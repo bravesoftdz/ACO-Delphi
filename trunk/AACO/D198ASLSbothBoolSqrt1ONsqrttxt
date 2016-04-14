@@ -1,0 +1,7 @@
+BatchFile test, number of cities :=198
+AS Algorithm - LSType Exponential Times = 5
+Format:
+avgGen avgdist DP AP IP NA AF Path1D Path1C Path2D Path2C Path3D Path3C ANTMEET
+AntType = Boolean
+AntDir = Bidirectional
+135.42 17621.13 0.1 0.5 0.1 25 0 16841

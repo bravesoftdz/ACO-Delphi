@@ -1,0 +1,4 @@
+BatchFile test, number of cities :=198
+AS Algorithm - LSType Exponential Times = 10
+Format:
+avgGen avgdist DP AP IP NA AF Pat

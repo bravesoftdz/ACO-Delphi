@@ -1,0 +1,61 @@
+This file contains information about each algorithm used by the program.
+so far I have enabled 4 different algorithms
+
+
+\\AS
+Ant Systems (AS) is the basic Ant Colony Optimisation algorithm. 
+
+In AS, an ant calculates which city to visit next by first calculating the attractiveness (A) of each possible city.
+A = Pheromone^Alpha / Distance^Beta
+
+The next city is chosen via a roulette wheel created via the summation of A for all non-visited cities
+
+In the AS algorithm, the pheromone levels are updated simultaneously after a tour. 
+First the pheromone on all arcs is reduced by multiplying by (1 - Pheromone Decay). 
+Then each ant augments the pheromone on the arcs travelled by adding (Pheromone Update)/(Distance of Tour)
+
+\\ACS
+Ant Colony Systems (ACS) has a slight added layer of complexity when compared to AS but generally better performance.
+
+In ACS, an ant calculates which city to visit next by first calculating the attractiveness (A) of each possible city.
+A = Pheromone^Alpha / Distance^Beta
+
+The ant then generates a random number and compares it to the preset Greedy Probability Threshold. If the number is below this threshold, the city with the highest attractiveness (A) is selected, otherwise the next city is chosen via a roulette wheel created via the summation of A for all non-visited cities
+
+In the ACS algorithm, the pheromone levels are updated simultaneously after a tour. 
+First the pheromone levels of the current-best path is reinforced by multiplying by (1 - Pheromone Decay) and then adding Pheromone Update/(Distance of tour). 
+Then each ant updates its individual path travelled by multiplying by (1 - Pheromone Decay) then adding Pheromone Decay x Initial Pheromone
+
+Note: the Additional Pheromone is in the range 0<p<1
+
+\\AMTS
+Ant Multi Tour Systems (AMTS) uses the basic AS algorithm  but uses the concept of retaining information within ants for several generations, namely how many times the ant has travelled from city i to city j. This information is used to promote exploration by making previously travelled arcs to be less attractive
+
+In AMTS, In AS an ant calculates which city to visit next by first calculating the attractiveness (A) of each possible city.
+A = (Pheromone^Alpha / Distance^Beta) / (Fij) 
+Where Fij is a factor derived from the number of time that this ant has already chosen to move from city i to city j. As the number of times the ant has previously travelled that arc increases, the attractiveness goes down.
+
+The next city is chosen via a roulette wheel created via the summation of A for all non-visited cities
+
+In the AMTS algorithm, the pheromone levels are updated simultaneously after a tour. 
+First the pheromone on all arcs is reduced by multiplying by (1 - Pheromone Decay). 
+Then each ant augments the pheromone on the arcs travelled by adding (Pheromone Update)/(Distance of Tour)
+
+
+\\MM
+The Max-Min (MM) algorithm limits both the maximum and minimum pheromone levels allowed on arcs.
+
+The pheromone levels on each arc is first initialised to be the maximum allowed level which is generally equal to 1/Pheromone Decay rate.
+
+In MM, an ant calculates which city to visit next by first calculating the attractiveness (A) of each possible city.
+A = Pheromone^Alpha / Distance^Beta
+
+The next city is chosen via a roulette wheel created via the summation of A for all non-visited cities
+
+In the MM algorithm, the pheromone levels are updated simultaneously after a tour. 
+First the pheromone on all arcs is reduced by multiplying by (1 - Pheromone Decay). A minimum pheromone level is specified for any path arc. If this causes the pheromone level to fall below this threshold, the pheromone level is reset to the minimum threshold.
+Then each ant augments the pheromone on the arcs travelled by adding (Pheromone Update)/(Distance of Tour). If this brings the pheromone level to be above the maximum specified, it is reduced to the maximum allowed.
+
+In most MM algorithms, Initial Pheromone = Maximum Pheromone = 1/Pheromone Decay Factor
+
+\\end file
